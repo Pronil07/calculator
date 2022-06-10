@@ -1,0 +1,23 @@
+.mainArea {
+    height: 8rem;
+    width: inherit;
+}
+
+.bottomArea {
+    height: 4rem;
+    padding-bottom: 1rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    color: white;
+    font-size: 48px;
+}
+
+.topArea {
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: white;
+    font-size: medium;
+}

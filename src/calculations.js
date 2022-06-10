@@ -1,18 +1,4 @@
-import InputArea from "./components/inputarea/InputArea";
-import ScreenTextArea from "./components/textarea/ScreenTextArea";
-import "./App.css";
-import { useState } from "react";
-
-const operators = ["+", "-", "*", "/"];
-function App() {
-  const [expression, setExpression] = useState("0");
-  const [currentNumber, setCurrentNumber] = useState("0");
-  const [history, setHistory] = useState([]);
-  const [showHistory, setShowHistory] = useState(false);
-
-  const exprLastValue = expression.slice(-1);
-
-  const calculateExpressions = (number) => {
+const calculateExpressions = (number,setCurrentNumber,setExpression,setHistory) => {
     //trigget on multiple decimals
     if (number === "." && currentNumber.includes(".")) return;
 
@@ -58,6 +44,8 @@ function App() {
       if (!expression || expression.includes("=")) return;
       evaluateExpression(expression + currentNumber);
       setExpression(expression + currentNumber + number);
+
+      //setHistory((prevState) => [expression + currentNumber, ...prevState]);
       return;
     }
 
@@ -72,41 +60,6 @@ function App() {
     currentNumber === "0"
       ? setCurrentNumber(number + "")
       : setCurrentNumber(currentNumber + number + "");
-  };
+};
 
-  const evaluateExpression = (expression) => {
-    if (!expression) return;
-    const calculation = eval(expression).toFixed(2);
-    setCurrentNumber(calculation);
-    setHistory((prevState) => [expression + " = " + calculation, ...prevState]);
-  };
-
-  const historyToggleHandler = () => {
-    setShowHistory((prev) => !prev);
-  };
-
-  return (
-    <div className="app">
-      <ScreenTextArea currentNumber={currentNumber} expression={expression} />
-      <InputArea expression={calculateExpressions} />
-      <div
-        className={`showhistoryButton ${
-          showHistory ? "historyTabOpen" : "historyTabClose"
-        }`}
-        onClick={historyToggleHandler}
-      >
-        &gt;
-      </div>
-      {showHistory && (
-        <div className="historyTab ">
-          History:
-          {history.map((data, id) => (
-            <p key={id}> {data}</p>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-export default App;
+export default calculateExpressions;
