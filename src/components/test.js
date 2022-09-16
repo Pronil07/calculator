@@ -1,0 +1,1 @@
+export default newText = <div>this is nothing</div>
