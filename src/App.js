@@ -48,7 +48,7 @@ function App() {
         ? setExpression(currentNumber + number + "")
         : operators.includes(exprLastValue)
         ? setExpression(expression + currentNumber + number)
-        : setExpression(currentNumber + number + ""); //need to modify WIP
+        : setExpression(currentNumber + number + "");
       setCurrentNumber("0");
       return;
     }
